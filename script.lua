@@ -9,7 +9,7 @@ function onCreate(is_world_create)
 end
 
 function httpReply(port, url, response_body)
-	if url == "/getmsgs" and response_body ~= "Connection closed unexpectedly" then
+	if url == "/getmsgs" and response_body ~= "OK" then
 		pos = string.find(response_body,"\r")
 		if pos ~= nil then
 			name = string.sub(response_body,0,pos)
