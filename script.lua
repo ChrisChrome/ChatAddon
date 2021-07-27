@@ -1,11 +1,17 @@
 chatbot_port = 9005
 steam_ids = {}
+tick = 0
+
+function onTick()
+	if tick % 30 == 0 then
+		server.httpGet(chatbot_port, "/getmsgs")
+	end
+end
 
 function onCreate(is_world_create)
 	for _, player in pairs(server.getPlayers()) do
 		steam_ids[player.id] = tostring(player.steam_id)
 	end
-	server.httpGet(chatbot_port, "/getmsgs")
 end
 
 function httpReply(port, url, response_body)
@@ -17,7 +23,6 @@ function httpReply(port, url, response_body)
 			server.announce(name, msg)
 		end
 	end
-	server.httpGet(chatbot_port, "/getmsgs")
 end
 
 function onPlayerJoin(steam_id, name, peer_id, admin, auth)
