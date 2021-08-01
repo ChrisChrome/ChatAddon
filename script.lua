@@ -28,6 +28,11 @@ end
 
 function onPlayerJoin(steam_id, name, peer_id, admin, auth)
 	steam_ids[peer_id] = tostring(steam_id)
+	server.httpGet(chatbot_port, "/join?sid="..steam_id)
+end
+
+function onPlayerLeave(steam_id, name, peer_id, is_admin, is_auth)
+	server.httpGet(chatbot_port, "/leave?sid="..steam_id)
 end
 
 function onChatMessage(user_peer_id, sender_name, message)
