@@ -6,7 +6,7 @@ function onTick()
 	tick = tick + 1
 	if tick % 30 == 0 then
 		server.httpGet(chatbot_port, "/getmsgs")
-		server.httpGet(chatbot_port, "/setplayers?p="..#server.getPlayers())
+		server.httpGet(chatbot_port, "/setplayers?p="..#server.getPlayers()-1)
 	end
 end
 
